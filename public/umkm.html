@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMKM Mahasiswa - BizConnect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/umkm.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Minimal Navigation -->
+    <nav class="minimal-navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2><a href="/">BizConnect</a></h2>
+                <p>Koneksikan Inspirasi, Publikasikan Inovasi</p>
+            </div>
+            <div class="nav-actions">
+                <button class="history-btn" onclick="toggleTransactionHistory()">
+                    <i class="fas fa-history"></i>
+                    <span>Riwayat</span>
+                </button>
+                <button class="cart-btn" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="umkm-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>UMKM Mahasiswa</h1>
+                <p>Jelajahi produk dan jasa dari sesama mahasiswa. Dukung bisnis kreatif dan inovatif mahasiswa</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-store"></i>
+                        <span>500+ UMKM</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-star"></i>
+                        <span>Terpercaya</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <span>1000+ Users</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="umkm-filter">
+        <div class="container">
+            <div class="filter-content">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-category="all">Semua</button>
+                    <button class="filter-tab" data-category="fashion">Fashion & Accessories</button>
+                    <button class="filter-tab" data-category="technology">Technology Services</button>
+                    <button class="filter-tab" data-category="education">Education Services</button>
+                    <button class="filter-tab" data-category="food">Food & Beverage</button>
+                    <button class="filter-tab" data-category="creative">Creative Services</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Cari UMKM, kategori, produk, atau jasa...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UMKM Content -->
+    <section class="umkm-content">
+        <div class="container">
+            <div class="umkm-layout">
+                <!-- Galeri UMKM Mahasiswa -->
+                <div class="umkm-gallery-section">
+                    <div class="gallery-header">
+                        <h2>Galeri UMKM Mahasiswa</h2>
+                        <p>Jelajahi berbagai produk dan jasa kreatif dari mahasiswa</p>
+                    </div>
+                    <div class="umkm-grid" id="umkmGrid">
+                        <!-- Content will be loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="umkm-sidebar">
+                    <!-- Load More Button for Mobile -->
+                    <div class="load-more-mobile">
+                        <button id="loadMoreBtnMobile" class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Muat Lebih Banyak
+                        </button>
+                    </div>
+                    
+                    <div class="sidebar-widget">
+                        <h3>Kategori Populer</h3>
+                        <div class="category-list">
+                            <div class="category-item">
+                                <span class="category-name">Fashion & Accessories</span>
+                                <span class="category-count">120</span>
+                            </div>
+                            <div class="category-item">
+                                <span class="category-name">Technology Services</span>
+                                <span class="category-count">85</span>
+                            </div>
+                            <div class="category-item">
+                                <span class="category-name">Education Services</span>
+                                <span class="category-count">95</span>
+                            </div>
+                            <div class="category-item">
+                                <span class="category-name">Food & Beverage</span>
+                                <span class="category-count">110</span>
+                            </div>
+                            <div class="category-item">
+                                <span class="category-name">Creative Services</span>
+                                <span class="category-count">90</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h3>UMKM Terpopuler</h3>
+                        <div class="popular-umkm" id="popularUmkm">
+                            <!-- Content will be loaded dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h3>Tips Bisnis</h3>
+                        <div class="business-tips">
+                            <div class="tip-item">
+                                <i class="fas fa-lightbulb"></i>
+                                <div class="tip-content">
+                                    <h4>Tips Marketing Digital</h4>
+                                    <p>Pelajari strategi marketing digital untuk UMKM</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <i class="fas fa-chart-line"></i>
+                                <div class="tip-content">
+                                    <h4>Analisis Keuangan</h4>
+                                    <p>Kelola keuangan bisnis dengan baik</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <i class="fas fa-users"></i>
+                                <div class="tip-content">
+                                    <h4>Customer Service</h4>
+                                    <p>Tips memberikan pelayanan terbaik</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h3>Daftar UMKM</h3>
+                        <p>Ingin mendaftarkan UMKM Anda?</p>
+                        <a href="https://api.whatsapp.com/send/?phone=6287715658420&text=Halo,%20saya%20ingin%20mendaftarkan%20UMKM%20saya%20di%20BizConnect" class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Daftar Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Load More Button -->
+    <section class="load-more-section">
+        <div class="container">
+            <button id="loadMoreBtn" class="btn btn-primary">
+                <i class="fas fa-plus"></i>
+                Muat Lebih Banyak
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BizConnect</h3>
+                    <p>Koneksikan Inspirasi, Publikasikan Inovasi</p>
+                    <div class="social-links">
+                        <a href="https://youtu.be/xvFZjo5PgG0?si=3jDvyOJaKuNH5VBw"><i class="fab fa-facebook"></i></a>
+                        <a href="https://youtu.be/xvFZjo5PgG0?si=3jDvyOJaKuNH5VBw"><i class="fab fa-twitter"></i></a>
+                        <a href="https://youtu.be/xvFZjo5PgG0?si=3jDvyOJaKuNH5VBw"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtu.be/xvFZjo5PgG0?si=3jDvyOJaKuNH5VBw"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/#about">About Us</a></li>
+                        <li><a href="/#explore">Start Exploring</a></li>
+                        <li><a href="/#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Kategori</h4>
+                    <ul>
+                        <li><a href="/news">Berita Kampus</a></li>
+                        <li><a href="/umkm">UMKM Mahasiswa</a></li>
+                        <li><a href="/#home">Beranda</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Dapatkan update terbaru dari BizConnect</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Email Anda">
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BizConnect. All rights reserved. | Made with ❤️ for students</p>
+                <button id="backToTop" class="back-to-top" onclick="scrollToTop()">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>Kembali ke Atas</span>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Store Products Modal -->
+    <div id="storeProductsModal" class="store-products-modal-overlay">
+        <div class="store-products-modal">
+            <div class="store-products-modal-header">
+                <h2><i class="fas fa-store"></i> <span id="storeName">Store Products</span></h2>
+                <button class="close-btn" onclick="closeStoreProductsModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="store-products-modal-content">
+                <div class="store-info" id="storeInfo">
+                    <!-- Store info will be loaded here -->
+                </div>
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="cart-modal-overlay">
+        <div class="cart-modal">
+            <div class="cart-modal-header">
+                <h2><i class="fas fa-shopping-cart"></i> Shopping Cart</h2>
+                <button class="close-btn" onclick="toggleCart()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-modal-content">
+                <div class="cart-items" id="cartItems">
+                    <!-- Cart items will be loaded here -->
+                </div>
+                <div class="cart-summary">
+                    <div class="cart-total">
+                        <span>Total Items: <span id="totalItems">0</span></span>
+                        <span>Total Price: <span id="totalPrice">Rp 0</span></span>
+                    </div>
+                    <div class="cart-actions" id="cartActions">
+                        <button class="btn btn-secondary" onclick="clearCart()">
+                            <i class="fas fa-trash"></i> Clear Cart
+                        </button>
+                        <button class="btn btn-primary" onclick="proceedToCheckout()" id="checkoutBtn">
+                            <i class="fas fa-credit-card"></i> Checkout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaction History Modal -->
+    <div id="transactionHistoryModal" class="transaction-history-modal-overlay">
+        <div class="transaction-history-modal">
+            <div class="transaction-history-modal-header">
+                <h2><i class="fas fa-history"></i> Riwayat Transaksi</h2>
+                <button class="close-btn" onclick="toggleTransactionHistory()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="transaction-history-modal-content">
+                <div class="transaction-filters">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label for="dateFrom">Dari Tanggal:</label>
+                            <input type="date" id="dateFrom" class="date-input">
+                        </div>
+                        <div class="filter-group">
+                            <label for="dateTo">Sampai Tanggal:</label>
+                            <input type="date" id="dateTo" class="date-input">
+                        </div>
+                        <div class="filter-group">
+                            <label for="statusFilter">Status:</label>
+                            <select id="statusFilter" class="status-select">
+                                <option value="all">Semua Status</option>
+                                <option value="pending">Pending</option>
+                                <option value="completed">Selesai</option>
+                                <option value="cancelled">Dibatalkan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="filter-actions">
+                        <button id="applyFilter" class="btn btn-primary">
+                            <i class="fas fa-filter"></i> Terapkan Filter
+                        </button>
+                        <button id="clearFilter" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> Reset
+                        </button>
+                        <button id="printPDF" class="btn btn-success">
+                            <i class="fas fa-file-pdf"></i> Print PDF
+                        </button>
+                    </div>
+                </div>
+                <div class="transaction-summary">
+                    <div class="summary-item">
+                        <span class="summary-label">Total Transaksi:</span>
+                        <span class="summary-value" id="totalTransactions">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Total Nilai:</span>
+                        <span class="summary-value" id="totalValue">Rp 0</span>
+                    </div>
+                </div>
+                <div class="transaction-list" id="transactionList">
+                    <!-- Transaction items will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/umkm.js"></script>
+</body>
+</html>

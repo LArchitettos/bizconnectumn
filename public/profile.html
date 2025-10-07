@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - BizConnect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/toast.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="profile-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>BizConnect</h2>
+                <p>Koneksikan Inspirasi, Publikasikan Inovasi</p>
+            </div>
+            <div class="nav-actions">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    Beranda
+                </a>
+                <button class="nav-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Container -->
+    <div class="profile-container">
+        <div class="profile-layout">
+            <!-- Profile Sidebar -->
+            <aside class="profile-sidebar">
+                <div class="profile-card">
+                    <div class="profile-info" style="text-align:center;">
+                        <h2 id="profileName">User Name</h2>
+                        <p id="profileEmail">user@example.com</p>
+                        <span class="profile-role" id="profileRole">User</span>
+                    </div>
+                </div>
+                
+                <nav class="profile-nav-menu">
+                    <a href="#personal" class="nav-menu-item active" data-section="personal">
+                        <i class="fas fa-user"></i>
+                        <span>Informasi Akun</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Profile Main Content -->
+            <main class="profile-main">
+                <!-- Personal Information Section -->
+                <section id="personal" class="profile-section active">
+                    <div class="section-header section-header--center">
+                        <h1>Informasi Akun</h1>
+                    </div>
+                    
+                    <div class="profile-summary profile-summary--center">
+                        <div class="summary-row"><strong>Username:</strong> <span id="displayUsername">-</span></div>
+                        <div class="summary-row"><strong>Full Name:</strong> <span id="displayFullName">-</span></div>
+                        <div class="summary-row"><strong>Email:</strong> <span id="displayEmail">-</span></div>
+                    </div>
+                    
+                    <form class="profile-form" id="securityForm" style="margin-top:1.5rem;">
+                        <div class="form-group">
+                            <label for="securityFullName">Ubah Nama Lengkap</label>
+                            <div class="input-group">
+                                <input type="text" id="securityFullName" name="securityFullName" placeholder="Nama lengkap baru">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="securityUsername">Ubah Username</label>
+                            <div class="input-group">
+                                <input type="text" id="securityUsername" name="securityUsername" placeholder="Username baru">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="currentPassword">Password Saat Ini</label>
+                            <div class="input-group">
+                                <input type="password" id="currentPassword" name="currentPassword">
+                                <button type="button" class="password-toggle" onclick="togglePassword('currentPassword')">
+                                    <i class="fas fa-eye" id="currentPasswordIcon"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="newPassword">Password Baru</label>
+                            <div class="input-group">
+                                <input type="password" id="newPassword" name="newPassword">
+                                <button type="button" class="password-toggle" onclick="togglePassword('newPassword')">
+                                    <i class="fas fa-eye" id="newPasswordIcon"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirmPassword">Konfirmasi Password Baru</label>
+                            <div class="input-group">
+                                <input type="password" id="confirmPassword" name="confirmPassword">
+                                <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                                    <i class="fas fa-eye" id="confirmPasswordIcon"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-key"></i>
+                                Simpan Perubahan
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="deleteAccount()">
+                                <i class="fas fa-user-times"></i>
+                                Hapus Akun
+                            </button>
+                        </div>
+                    </form>
+                </section>
+                
+            </main>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Memproses...</p>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

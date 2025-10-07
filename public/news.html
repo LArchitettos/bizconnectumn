@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita Kampus - BizConnect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/news.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Minimal Navigation -->
+    <nav class="minimal-navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2><a href="/">BizConnect</a></h2>
+                <p>Koneksikan Inspirasi, Publikasikan Inovasi</p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="news-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Berita Kampus Terbaru</h1>
+                <p>Dapatkan informasi terkini tentang kegiatan, prestasi, dan perkembangan kampus Anda</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-newspaper"></i>
+                        <span>50+ Artikel</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-eye"></i>
+                        <span>10K+ Views</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>Updated Daily</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="news-filter">
+        <div class="container">
+            <div class="filter-content">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-category="all">Semua</button>
+                    <button class="filter-tab" data-category="prestasi">Prestasi</button>
+                    <button class="filter-tab" data-category="event">Event</button>
+                    <button class="filter-tab" data-category="fasilitas">Fasilitas</button>
+                    <button class="filter-tab" data-category="beasiswa">Beasiswa</button>
+                    <button class="filter-tab" data-category="budaya">Budaya</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Cari berita...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Content -->
+    <section class="news-content">
+        <div class="container">
+            <div class="news-layout">
+                <!-- Featured News -->
+                <div class="featured-news">
+                    <h2>Berita Utama</h2>
+                    <div class="featured-card" id="featuredCard">
+                        <!-- Content will be loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- News Grid -->
+                <div class="news-grid" id="newsGrid">
+                    <!-- Content will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="news-sidebar">
+                <div class="sidebar-widget">
+                    <h3>Kategori Populer</h3>
+                    <div class="category-list">
+                        <div class="category-item">
+                            <span class="category-name">Prestasi</span>
+                            <span class="category-count">15</span>
+                        </div>
+                        <div class="category-item">
+                            <span class="category-name">Event</span>
+                            <span class="category-count">12</span>
+                        </div>
+                        <div class="category-item">
+                            <span class="category-name">Fasilitas</span>
+                            <span class="category-count">8</span>
+                        </div>
+                        <div class="category-item">
+                            <span class="category-name">Beasiswa</span>
+                            <span class="category-count">6</span>
+                        </div>
+                        <div class="category-item">
+                            <span class="category-name">Budaya</span>
+                            <span class="category-count">9</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3>Berita Terpopuler</h3>
+                    <div class="popular-news" id="popularNews">
+                        <!-- Content will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Load More Button -->
+    <section class="load-more-section">
+        <div class="container">
+            <button id="loadMoreBtn" class="btn btn-primary">
+                <i class="fas fa-plus"></i>
+                Muat Lebih Banyak
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BizConnect</h3>
+                    <p>Koneksikan Inspirasi, Publikasikan Inovasi</p>
+                    <div class="social-links">
+                        <a href="https://youtu.be/xvFZjo5PgG0?si=3jDvyOJaKuNH5VBw"><i class="fab fa-facebook"></i></a>
+                        <a href="https://youtu.be/xvFZjo5PgG0?si=3jDvyOJaKuNH5VBw"><i class="fab fa-twitter"></i></a>
+                        <a href="https://youtu.be/xvFZjo5PgG0?si=3jDvyOJaKuNH5VBw"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtu.be/xvFZjo5PgG0?si=3jDvyOJaKuNH5VBw"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/#about">About Us</a></li>
+                        <li><a href="/#explore">Start Exploring</a></li>
+                        <li><a href="/#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Kategori</h4>
+                    <ul>
+                        <li><a href="/news">Berita Kampus</a></li>
+                        <li><a href="/umkm">UMKM Mahasiswa</a></li>
+                        <li><a href="/#home">Beranda</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Dapatkan update terbaru dari BizConnect</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Email Anda">
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BizConnect. All rights reserved.</p>
+                <button id="backToTop" class="back-to-top" onclick="scrollToTop()">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>Kembali ke Atas</span>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/news.js"></script>
+</body>
+</html>

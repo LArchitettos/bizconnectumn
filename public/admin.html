@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - BizConnect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/toast.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Admin Navigation -->
+    <nav class="admin-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-shield-alt"></i>
+                <span>Admin Panel</span>
+            </div>
+            <div class="nav-user">
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="adminName">Admin</span>
+                </div>
+                <div class="nav-actions">
+                    <button class="sidebar-toggle" aria-label="Toggle menu" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <button class="nav-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Layout -->
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-header">
+                <h3>Menu Admin</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#users" class="nav-item" data-section="users">
+                    <i class="fas fa-users"></i>
+                    <span>Kelola User</span>
+                </a>
+                <a href="#news" class="nav-item" data-section="news">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Kelola Berita</span>
+                </a>
+                <a href="#umkm" class="nav-item" data-section="umkm">
+                    <i class="fas fa-store"></i>
+                    <span>Kelola UMKM</span>
+                </a>
+                
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="admin-section active">
+                <div class="section-header">
+                    <h1>Dashboard Admin</h1>
+                    <p>Selamat datang di panel administrasi BizConnect</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalUsers">0</h3>
+                            <p>Total Users</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalNews">0</h3>
+                            <p>Total Berita</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalUmkm">0</h3>
+                            <p>Total UMKM</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="pendingApprovals">0</h3>
+                            <p>Menunggu Persetujuan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-content">
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3>Aktivitas Terbaru</h3>
+                            <div class="activity-list" id="recentActivity">
+                                <!-- Activity items will be loaded here -->
+                            </div>
+                        </div>
+                        <div class="content-card">
+                            <h3>Antrian Persetujuan UMKM</h3>
+                            <div id="pendingApprovalsList" class="pending-approvals"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Users Section -->
+            <section id="users" class="admin-section">
+                <div class="section-header">
+                    <h1>Kelola User</h1>
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" onclick="printUsersPdf()">
+                            <i class="fas fa-print"></i>
+                            Print Data
+                        </button>
+                        <button class="btn btn-primary" onclick="openUserModal()">
+                            <i class="fas fa-plus"></i>
+                            Tambah User
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="usersSearchInput" placeholder="Cari user berdasarkan username, email, atau nama lengkap...">
+                        <button class="search-clear" id="usersSearchClear" onclick="clearSearch('users')" style="display: none;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="search-results-info" id="usersSearchInfo" style="display: none;">
+                        <span id="usersSearchCount">0</span> hasil ditemukan
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="admin-table" id="usersTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Nama Lengkap</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Terakhir Login</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <!-- Users will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- News Section -->
+            <section id="news" class="admin-section">
+                <div class="section-header">
+                    <h1>Kelola Berita</h1>
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" onclick="printNewsPdf()">
+                            <i class="fas fa-print"></i>
+                            Print Data
+                        </button>
+                        <button class="btn btn-primary" onclick="openNewsModal()">
+                            <i class="fas fa-plus"></i>
+                            Tambah Berita
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="newsSearchInput" placeholder="Cari berita berdasarkan judul, kategori, atau author...">
+                        <button class="search-clear" id="newsSearchClear" onclick="clearSearch('news')" style="display: none;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="search-results-info" id="newsSearchInfo" style="display: none;">
+                        <span id="newsSearchCount">0</span> hasil ditemukan
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="admin-table" id="newsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Judul</th>
+                                <th>Kategori</th>
+                                <th>Author</th>
+                                <th>Tanggal</th>
+                                <th>Views</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="newsTableBody">
+                            <!-- News will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- UMKM Section -->
+            <section id="umkm" class="admin-section">
+                <div class="section-header">
+                    <h1>Kelola UMKM</h1>
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" onclick="printUmkmPdf()">
+                            <i class="fas fa-print"></i>
+                            Print Data
+                        </button>
+                        <button class="btn btn-primary" onclick="openUmkmModal()">
+                            <i class="fas fa-plus"></i>
+                            Tambah UMKM
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="umkmSearchInput" placeholder="Cari UMKM berdasarkan nama, pemilik, atau kategori...">
+                        <button class="search-clear" id="umkmSearchClear" onclick="clearSearch('umkm')" style="display: none;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="search-results-info" id="umkmSearchInfo" style="display: none;">
+                        <span id="umkmSearchCount">0</span> hasil ditemukan
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="admin-table" id="umkmTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nama UMKM</th>
+                                <th>Pemilik</th>
+                                <th>Kategori</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th>Tanggal Dibuat</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="umkmTableBody">
+                            <!-- UMKM will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            
+        </main>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <!-- Modals will be loaded here -->
+    <div id="modalContainer"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Memproses...</p>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
